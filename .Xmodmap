@@ -1,0 +1,6 @@
+keycode 49 = dead_grave asciitilde
+keycode 48 = dead_acute dead_diaeresis
+keycode 15 = 6 dead_circumflex
+keycode 59 = comma less ccedilla Ccedilla
+keycode 113 = Mode_switch
+keycode 54 = c C ccedilla Ccedilla
