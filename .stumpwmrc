@@ -4,3 +4,20 @@
 (swank:create-server :port 4004
 		     :style swank:*communication-style*
 		     :dont-close t)
+
+
+;; use emacs-client, not emacs
+(defparameter *emacs-client-bin* "/home/kafka/bin/ec")
+(define-key *root-map* (kbd "e") (concat "exec " *emacs-client-bin*))
+(define-key *root-map* (kbd "C-e") (concat "exec " *emacs-client-bin*))
+
+;; mode-line
+;; refresh every second
+(setf *mode-line-timeout* 1)
+
+;; date and time | windows list
+(setf *screen-mode-line-format* (list '(:eval (run-shell-command "date +'%a %d-%m-%Y %H:%M'" t))))
+
+;; toggle mode-line
+(stumpwm:toggle-mode-line (stumpwm:current-screen)
+                          (stumpwm:current-head))
