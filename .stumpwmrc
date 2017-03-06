@@ -7,9 +7,15 @@
 
 
 ;; use emacs-client, not emacs
-(defparameter *emacs-client-bin* "/home/kafka/bin/ec")
-(define-key *root-map* (kbd "e") (concat "exec " *emacs-client-bin*))
-(define-key *root-map* (kbd "C-e") (concat "exec " *emacs-client-bin*))
+(defparameter *emacs-client-script* "/home/kafka/bin/ec")
+(define-key *root-map* (kbd "e") (concat "exec " *emacs-client-script*))
+(define-key *root-map* (kbd "C-e") (concat "exec " *emacs-client-script*))
+
+;; use ansi-term instead of xterm
+(defparameter *my-shell* (getenv "SHELL"))
+(defparameter *emacs-client-bin* "/usr/local/bin/emacsclient")
+(define-key *root-map* (kbd "c") (concat "exec " *emacs-client-bin* " -c -a \"\" -e '(ansi-term \"" *my-shell* "\")'"))
+(define-key *root-map* (kbd "C-c") (concat "exec " *emacs-client-bin* " -c -a \"\" -e '(ansi-term \"" *my-shell* "\")'"))
 
 ;; mode-line
 ;; refresh every second
