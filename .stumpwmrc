@@ -17,6 +17,10 @@
 (define-key *root-map* (kbd "c") (concat "exec " *emacs-client-bin* " -c -a \"\" -e '(ansi-term \"" *my-shell* "\")'"))
 (define-key *root-map* (kbd "C-c") (concat "exec " *emacs-client-bin* " -c -a \"\" -e '(ansi-term \"" *my-shell* "\")'"))
 
+;; volume up and volume down
+(define-key *root-map* (kbd "XF86AudioRaiseVolume") "exec mixer vol +5:+5")
+(define-key *root-map* (kbd "XF86AudioLowerVolume") "exec mixer vol -5:-5")
+
 ;; mode-line
 ;; refresh every second
 (setf *mode-line-timeout* 1)
