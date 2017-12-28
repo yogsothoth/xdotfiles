@@ -1,4 +1,5 @@
 xset +fp "/usr/local/share/fonts/terminus-font"
+xset +fp "/usr/local/share/fonts/Droid/"
 xset fp rehash
 xmodmap ~/.Xmodmap
 xrdb -merge ~/.Xresources
