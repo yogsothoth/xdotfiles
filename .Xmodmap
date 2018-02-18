@@ -4,3 +4,8 @@ keycode 15 = 6 dead_circumflex
 keycode 59 = comma less ccedilla Ccedilla
 keycode 113 = Mode_switch
 keycode 54 = c C ccedilla Ccedilla
+clear lock
+clear control
+keycode 66 = Control_L
+add control = Control_L Control_R
+keycode 140 = XF86AudioMute

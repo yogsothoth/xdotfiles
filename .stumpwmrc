@@ -20,6 +20,7 @@
 ;; volume up and volume down
 (define-key *root-map* (kbd "XF86AudioRaiseVolume") "exec mixer vol +5:+5")
 (define-key *root-map* (kbd "XF86AudioLowerVolume") "exec mixer vol -5:-5")
+(define-key *root-map* (kbd "XF86AudioMute") "exec mixer vol 0:0")
 
 ;; mode-line
 ;; refresh every second
@@ -31,3 +32,6 @@
 ;; toggle mode-line
 (stumpwm:toggle-mode-line (stumpwm:current-screen)
                           (stumpwm:current-head))
+(setf (stumpwm:group-name (stumpwm::find-group (stumpwm:current-screen) "Default")) "main")
+(stumpwm:add-group (stumpwm:current-screen) "mail")
+(stumpwm:add-group (stumpwm:current-screen) "shell")
