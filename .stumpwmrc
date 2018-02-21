@@ -27,8 +27,11 @@
 (setf *mode-line-timeout* 1)
 
 ;; date and time | windows list
-(setf *screen-mode-line-format* (list '(:eval (run-shell-command "date +'%a %d-%m-%Y %H:%M'" t))))
-
+(setf *screen-mode-line-format* (list '(:eval
+					(cl-ppcre:regex-replace-all "(\\n*$)"
+					 (run-shell-command "date +'%a %d-%m-%Y %H:%M'" t) ""))
+				      " | " "%g" " | "
+				      '(:eval (window-name (current-window)))))
 ;; toggle mode-line
 (stumpwm:toggle-mode-line (stumpwm:current-screen)
                           (stumpwm:current-head))
