@@ -5,7 +5,6 @@
 		     :style swank:*communication-style*
 		     :dont-close t)
 
-
 ;; use emacs-client, not emacs
 (defparameter *emacs-client-script* "/home/kafka/bin/ec")
 (define-key *root-map* (kbd "e") (concat "exec " *emacs-client-script*))
@@ -35,6 +34,58 @@
 ;; toggle mode-line
 (stumpwm:toggle-mode-line (stumpwm:current-screen)
                           (stumpwm:current-head))
-(setf (stumpwm:group-name (stumpwm::find-group (stumpwm:current-screen) "Default")) "main")
-(stumpwm:add-group (stumpwm:current-screen) "mail")
-(stumpwm:add-group (stumpwm:current-screen) "shell")
+; (setf (stumpwm:group-name (stumpwm::find-group (stumpwm:current-screen) "Default")) "main")
+; (stumpwm:add-group (stumpwm:current-screen) "mail")
+; (stumpwm:add-group (stumpwm:current-screen) "shell")
+
+(stumpwm:run-commands "gnewbg mail" "gnewbg norsk")
+
+;; from http://www.xsteve.at/prg/stumpwm/
+
+;; Define the background window
+(defvar *background-image-path* "/data/pictures/wallpapers/")
+(defun select-random-background-image ()
+  "Select a random image"
+  (let ((file-list (directory (concatenate 'string *background-image-path* "*.jpg")))
+        (*random-state* (make-random-state t)))
+    (namestring (nth (random (length file-list)) file-list))))
+
+(run-shell-command (concatenate 'string "display -window root " (select-random-background-image)))
+
+;; mouse focus, either :sloppy, :click or :ignore
+(setf *mouse-focus-policy* :ignore)
+
+;; (clear-window-placement-rules)
+
+;; (define-frame-preference "Default"
+;;     (1 t t :title "emacs")
+;;   (1 t t :class "Firefox"))
+  
+
+;; modules
+;;(setf *module-dir* (list "~/code/stumpwm-contrib"))
+;;(setf *load-path* (list "~/code/stumpwm-contrib"))
+
+;; winner-mode
+(load-module "winner-mode")
+(defvar *winner-map* (make-sparse-keymap))
+
+(define-key *root-map* (kbd "b") '*winner-map*)
+
+(define-key *winner-map* (kbd "Left") "winner-undo")
+(define-key *winner-map* (kbd "Right") "winner-redo")
+
+(add-hook *post-command-hook* (lambda (command)
+                                (when (member command winner-mode:*default-commands*)
+                                  (winner-mode:dump-group-to-file))))
+
+
+;; swm-gaps
+(load-module "swm-gaps")
+
+;; Inner gaps run along all the 4 borders of a frame
+(setf swm-gaps:*inner-gaps-size* 10)
+
+;; Outer gaps add more padding to the outermost borders
+;; (touching the screen border)
+(setf swm-gaps:*outer-gaps-size* 20)
