@@ -3,6 +3,9 @@ keycode 48 = dead_acute dead_diaeresis
 keycode 15 = 6 dead_circumflex
 keycode 59 = comma less ccedilla Ccedilla
 keycode 113 = Mode_switch
+keycode 66 = Control_L
+clear Lock
+add Control = Control_L
 keycode 54 = c C ccedilla Ccedilla
 
 keycode 38 = a A aring Aring ae
