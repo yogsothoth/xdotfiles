@@ -1,0 +1,10 @@
+keycode 11 = 2 quotedbl at
+keycode 21 = backslash dead_grave dead_acute
+keycode 59 = comma semicolon ccedilla Ccedilla
+keycode 113 = Mode_switch
+keycode 66 = Control_L
+clear Lock
+add Control = Control_L
+keycode 54 = c C ccedilla Ccedilla
+keycode 35 = dead_diaeresis dead_circumflex asciitilde
+
