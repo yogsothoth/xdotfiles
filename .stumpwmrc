@@ -43,14 +43,20 @@
 ;; from http://www.xsteve.at/prg/stumpwm/
 
 ;; Define the background window
-(defvar *background-image-path* "/data/pictures/wallpapers/")
+(defvar *background-image-path* "~/pictures/wallpapers/")
 (defun select-random-background-image ()
   "Select a random image"
   (let ((file-list (directory (concatenate 'string *background-image-path* "*.jpg")))
         (*random-state* (make-random-state t)))
     (namestring (nth (random (length file-list)) file-list))))
 
-(run-shell-command (concatenate 'string "display -window root " (select-random-background-image)))
+(run-shell-command (concatenate 'string "display -window root -backdrop black " (select-random-background-image)))
+
+(defcommand change-wallpaper ()
+  ()
+  (run-shell-command (concatenate 'string "display -window root -backdrop black " (select-random-background-image))))
+
+(define-key *root-map* (kbd "&") "change-wallpaper")
 
 ;; mouse focus, either :sloppy, :click or :ignore
 (setf *mouse-focus-policy* :ignore)
@@ -63,6 +69,8 @@
   
 
 ;; modules
+;; Modules are now loaded by default from ~/.stumpwm.d
+
 ;;(setf *module-dir* (list "~/code/stumpwm-contrib"))
 ;;(setf *load-path* (list "~/code/stumpwm-contrib"))
 
@@ -89,3 +97,5 @@
 ;; Outer gaps add more padding to the outermost borders
 ;; (touching the screen border)
 (setf swm-gaps:*outer-gaps-size* 20)
+
+(swm-gaps:toggle-gaps)
