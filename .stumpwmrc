@@ -34,11 +34,8 @@
 ;; toggle mode-line
 (stumpwm:toggle-mode-line (stumpwm:current-screen)
                           (stumpwm:current-head))
-; (setf (stumpwm:group-name (stumpwm::find-group (stumpwm:current-screen) "Default")) "main")
-; (stumpwm:add-group (stumpwm:current-screen) "mail")
-; (stumpwm:add-group (stumpwm:current-screen) "shell")
-
-(stumpwm:run-commands "gnewbg mail" "gnewbg norsk")
+(stumpwm:run-commands "grename main")
+(stumpwm:run-commands "gnewbg web" "gnewbg whatever")
 
 ;; from http://www.xsteve.at/prg/stumpwm/
 
