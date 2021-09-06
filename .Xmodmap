@@ -1,13 +1,4 @@
-keycode 49 = dead_grave asciitilde
-keycode 48 = dead_acute dead_diaeresis
-keycode 15 = 6 dead_circumflex
-keycode 59 = comma less ccedilla Ccedilla
-keycode 113 = Mode_switch
+keycode 21 = backslash bar NoSymbol NoSymbol dead_acute dead_grave
 keycode 66 = Control_L
 clear Lock
 add Control = Control_L
-keycode 54 = c C ccedilla Ccedilla
-
-keycode 38 = a A aring Aring ae
-keycode 32 = o O oslash Ooblique
-keycode 26 = e E ae AE

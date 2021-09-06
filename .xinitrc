@@ -1,14 +1,13 @@
+xrandr --output eDP-1 --auto --output HDMI-1 --auto --right-of eDP-1
 xset +fp "/usr/local/share/fonts/terminus-font"
-xset +fp "/usr/local/share/fonts/Droid/"
-xset +fp "/user/local/share/fonts/webfonts/"
+xset +fp "/usr/local/share/fonts/jmk-x11-fonts"
+xset +fp "/usr/local/share/fonts/urwfonts"
 xset fp rehash
+setxkbmap no
 xmodmap ~/.Xmodmap
 xrdb -merge ~/.Xresources
 xset b off
-#exec wmaker
-#exec sbcl --load ~/bin/startstumpwm --eval '(quit)'
-while true; do
-   xsetroot -name "$( date +"%A %d %R" )"
-   sleep 1m    # Update time every minute
-done &
-exec dwm
+mixer 85:85
+exec sbcl --load ~/bin/startstumpwm --eval '(quit)'
+#exec wmaker 
+#exec ~/bin/dwm

@@ -10,40 +10,56 @@
 (define-key *root-map* (kbd "e") (concat "exec " *emacs-client-script*))
 (define-key *root-map* (kbd "C-e") (concat "exec " *emacs-client-script*))
 
-;; use ansi-term instead of xterm
+;; use eshell instead of xterm
 (defparameter *my-shell* (getenv "SHELL"))
 (defparameter *emacs-client-bin* "/usr/local/bin/emacsclient")
-(define-key *root-map* (kbd "c") (concat "exec " *emacs-client-bin* " -c -a \"\" -e '(ansi-term \"" *my-shell* "\")'"))
-(define-key *root-map* (kbd "C-c") (concat "exec " *emacs-client-bin* " -c -a \"\" -e '(ansi-term \"" *my-shell* "\")'"))
+(define-key *root-map* (kbd "c") (concat "exec " *emacs-client-bin* " -c -a \"\" -e '(eshell \"" *my-shell* "\")'"))
+(define-key *root-map* (kbd "C-c") (concat "exec " *emacs-client-bin* " -c -a \"\" -e '(eshell \"" *my-shell* "\")'"))
 
 ;; volume up and volume down
 (define-key *root-map* (kbd "XF86AudioRaiseVolume") "exec mixer vol +5:+5")
 (define-key *root-map* (kbd "XF86AudioLowerVolume") "exec mixer vol -5:-5")
 (define-key *root-map* (kbd "XF86AudioMute") "exec mixer vol 0:0")
 
+(define-key *root-map* (kbd "+") "exec mixer vol +5:+5")
+(define-key *root-map* (kbd "-") "exec mixer vol -5:-5")
+(define-key *root-map* (kbd "Escape") "exec mixer vol 0:0")
+
+;; font
+(set-font "-xos4-terminus-medium-r-normal-*-16-*-*-*-*-*-*-*")
+
 ;; mode-line
 ;; refresh every second
-(setf *mode-line-timeout* 1)
+;; (setf *mode-line-timeout* 1)
+
+;; (setf *mode-line-background-color* "#007B7B")
+;; (setf *mode-line-foreground-color* "#FFFFFF")
+;; (setf *mode-line-border-width* 1)
+;; (setf *mode-line-border-color* "#007B7B")
 
 ;; date and time | windows list
-(setf *screen-mode-line-format* (list '(:eval
-					(cl-ppcre:regex-replace-all "(\\n*$)"
-					 (run-shell-command "date +'%a %d-%m-%Y %H:%M'" t) ""))
-				      " | " "%g" " | "
-				      '(:eval (window-name (current-window)))))
+;; (setf *screen-mode-line-format* (list '(:eval
+;; 					(cl-ppcre:regex-replace-all "(\\n*$)"
+;; 					 (run-shell-command "date +'%a %d-%m-%Y %H:%M'" t) ""))
+;; 				      " | " "%g" " | "
+;; 				      '(:eval (window-name (current-window)))))
 ;; toggle mode-line
-(stumpwm:toggle-mode-line (stumpwm:current-screen)
-                          (stumpwm:current-head))
-(stumpwm:run-commands "grename main")
-(stumpwm:run-commands "gnewbg web" "gnewbg whatever")
+;; (stumpwm:toggle-mode-line (stumpwm:current-screen)
+;;                           (stumpwm:current-head))
+
+(stumpwm:run-commands "grename code")
+(stumpwm:run-commands "gnewbg web" "gnewbg email"
+                      "gnewbg music" "gnewbg video"
+		      "gnewbg writing" "gnewbg norsk"
+		      "gnewbg russian" "gnewbg whatever")
 
 ;; from http://www.xsteve.at/prg/stumpwm/
 
 ;; Define the background window
-(defvar *background-image-path* "~/pictures/wallpapers/")
+(defvar *background-image-path* "~/pictures/lofi/")
 (defun select-random-background-image ()
   "Select a random image"
-  (let ((file-list (directory (concatenate 'string *background-image-path* "*.jpg")))
+  (let ((file-list (directory (concatenate 'string *background-image-path* "*.png")))
         (*random-state* (make-random-state t)))
     (namestring (nth (random (length file-list)) file-list))))
 
